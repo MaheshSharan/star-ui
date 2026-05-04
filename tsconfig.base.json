@@ -9,18 +9,16 @@
         "lib": ["ESNext"],
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
-        "outDir": "build",
         "noFallthroughCasesInSwitch": true,
         "noUnusedLocals": true,
         "removeComments": true,
         "resolveJsonModule": true,
-        "rootDir": "src",
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
         "target": "ESNext",
-        "verbatimModuleSyntax": true
-    },
-    "include": ["src"],
-    "exclude": ["src/client/**/*", "src/**/*.test.ts"]
+        "verbatimModuleSyntax": true,
+        "declaration": true,
+        "declarationMap": true
+    }
 }

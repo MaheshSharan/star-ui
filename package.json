@@ -4,11 +4,12 @@
     "version": "0.0.1",
     "type": "module",
     "scripts": {
-        "dev": "tsx src/backend/app.ts --dev",
-        "start": "cross-env NODE_ENV=production node build/backend/app.js",
-        "build": "pnpm build:backend && pnpm build:client",
+        "dev": "tsx src/server/index.ts --dev",
+        "start": "cross-env NODE_ENV=production node build/server/app.js",
+        "build": "npm build:server && npm build:client",
         "build:client": "vite build",
-        "build:backend": "tsc",
+        "format": "prettier --write .",
+        "build:server": "tsc",
         "test": "tsx --test"
     },
     "dependencies": {
@@ -29,7 +30,6 @@
         "clsx": "^2.1.1",
         "cmdk": "^1.1.1",
         "date-fns": "^4.1.0",
-        "dotenv": "^17.3.1",
         "embla-carousel-autoplay": "^8.6.0",
         "embla-carousel-react": "^8.6.0",
         "fastify": "^5.8.2",
@@ -70,6 +70,6 @@
         "tsx": "^4.21.0",
         "typescript": "~5.9.3",
         "typescript-eslint": "^8.57.1",
-        "vite": "^7.3.1"
+        "vite": "^7.3.2"
     }
 }
