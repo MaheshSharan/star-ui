@@ -5,10 +5,7 @@ import { useTranslation } from "react-i18next"
 import { Button } from "@/components/ui/button"
 import { Slider } from "@/components/ui/slider"
 import { formatTime } from "./utils/time"
-import { SubtitleSelector } from "./SubtitleSelector"
-import { AudioTrackSelector } from "./AudioTrackSelector"
-import type { WheelEventHandler } from "react"
-import { SourceSelector } from "@/components/player/SourceSelector.tsx"
+import { PlayerSettings } from "./PlayerSettings"
 
 interface PlayerControlsProps {
     isPlaying: boolean
@@ -136,9 +133,7 @@ export function PlayerControls({
                     </div>
 
                     <div className="flex items-center gap-2">
-                        <SourceSelector />
-                        <SubtitleSelector />
-                        <AudioTrackSelector />
+                        <PlayerSettings />
 
                         <Button variant="ghost" size="icon" onClick={onToggleFullscreen} className="text-white hover:bg-white/20" title={isFullscreen ? t("controls.exitFullscreen") : t("controls.fullscreen")}>
                             {isFullscreen ? <Minimize className="h-5 w-5" /> : <Maximize className="h-5 w-5" />}

@@ -31,5 +31,13 @@
         "nextEpisode": "Next Episode in",
         "playingNow": "Playing Now",
         "cancel": "Cancel"
+    },
+    "settings": {
+        "tabs": {
+            "source": "Source",
+            "subtitles": "Subtitles",
+            "audio": "Audio"
+        },
+        "noAudioTracks": "No audio tracks available"
     }
 }

@@ -5,9 +5,10 @@ import { usePlayerState } from "./hooks/usePlayerState"
 import { PlayerControls } from "./PlayerControls"
 import { LoadingState } from "./LoadingState"
 import { useEpisodeAutoplay } from "./hooks/useEpisodeAutoplay"
-
 import { EpisodeAutoplayOverlay } from "./EpisodeAutoplayOverlay"
 import { useSubtitles } from "@/components/player/hooks/useSubtitles.ts"
+
+import { CustomSubtitles } from "@/components/player/CustomSubtitles"
 
 export function MediaPlayer() {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -18,7 +19,7 @@ export function MediaPlayer() {
     const { t } = useTranslation("player")
 
     const { handleEpisodeEnded } = useEpisodeAutoplay()
-    const {subtitles, selectedSubtitle} = useSubtitles()
+    const { selectedSubtitle } = useSubtitles()
 
     const [showControls, setShowControls] = useState(true)
     const [isFullscreen, setIsFullscreen] = useState(false)
@@ -70,30 +71,6 @@ export function MediaPlayer() {
             }
         }
     }, [selectedSource, setError, setIsLoading, setIsPlaying])
-
-    useEffect(() => {
-        const video = videoRef.current
-        if (!video) return
-
-        const tracks = video.textTracks
-
-        for (let i = 0; i < tracks.length; i++) {
-            const track = tracks[i]
-
-            if (!selectedSubtitle) {
-                track.mode = "disabled"
-                continue
-            }
-
-            const match = subtitles.find((s) => s.url === selectedSubtitle.url)
-
-            if (match && track.label === match.label) {
-                track.mode = "showing"
-            } else {
-                track.mode = "disabled"
-            }
-        }
-    }, [selectedSubtitle, subtitles])
 
     // Sync isPlaying state
     useEffect(() => {
@@ -198,11 +175,11 @@ export function MediaPlayer() {
                 crossOrigin="anonymous"
                 poster={media?.backdropUrl.replace("w300", "original")}
                 playsInline
-            >
-                {subtitles.map((sub, idx) => (
-                    <track key={`${sub.url}-${idx}`} kind="captions" src={sub.url} label={sub.label} srcLang={sub.label || "en"} default={selectedSubtitle?.url === sub.url}  />
-                ))}
-            </video>
+            />
+
+            {selectedSubtitle && (
+                <CustomSubtitles url={selectedSubtitle.url} currentTime={currentTime} />
+            )}
 
             {isLoading && !isPlaying && (
                 <div className="absolute inset-0 flex items-center justify-center bg-black/20 backdrop-blur-[2px]">
