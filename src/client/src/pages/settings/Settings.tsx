@@ -26,9 +26,13 @@ import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/
 
 import ConfirmDialog from "@/components/layout/ConfirmDialog.tsx"
 
-import { AlertTriangle, RefreshCcw, Star, Trash2 } from "lucide-react"
+import { AlertTriangle, Monitor, Moon, RefreshCcw, Star, Sun, Trash2 } from "lucide-react"
 import { useEffect } from "react"
 import i18n from "i18next"
+import { useTheme } from "@/app/providers/theme-provider"
+import { useColorTheme } from "@/hooks/use-color-theme"
+import { colorThemes } from "@/hooks/use-color-theme"
+import { cn } from "@/lib/utils"
 
 export default function Settings() {
     const { t } = useTranslation(["settings", "common", "header"])
@@ -36,7 +40,7 @@ export default function Settings() {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const validTabs = ["general", "history", "playback", "omss", "tmdb"] as const
+    const validTabs = ["general", "appearance", "history", "playback", "omss", "tmdb"] as const
 
     type Tab = (typeof validTabs)[number]
 
@@ -50,6 +54,9 @@ export default function Settings() {
             navigate({ pathname: location.pathname, search: `?tab=${validTabs[0]}` }, { replace: true })
         }
     }, [])
+
+    const { theme, setTheme } = useTheme()
+    const { colorTheme, setColorTheme } = useColorTheme()
 
     const { region, locale, autoplayNext, tmdbApiKey, setLocale, setAutoplayNext, setRegion, standalone } = useAppSettings()
     const tmdb = useTmdb()
@@ -70,7 +77,7 @@ export default function Settings() {
     const { cache } = useTmdb()
 
     return (
-        <section className="mx-auto mt-25 min-h-[60vh] max-w-3xl space-y-6">
+        <section className="mx-auto mt-25 min-h-[60vh] max-w-3xl space-y-6 px-4 sm:px-6">
             <H1>{t("title")}</H1>
 
             <Tabs
@@ -93,6 +100,7 @@ export default function Settings() {
                 {/* Tabs header */}
                 <TabsList variant="line">
                     <TabsTrigger value="general">{t("general.title")}</TabsTrigger>
+                    <TabsTrigger value="appearance">{t("tabs.appearance")}</TabsTrigger>
                     <TabsTrigger value="history">{t("tabs.history")}</TabsTrigger>
                     <TabsTrigger value="playback">{t("tabs.playback")}</TabsTrigger>
                     <TabsTrigger value="omss">{t("tabs.omss")}</TabsTrigger>
@@ -168,6 +176,91 @@ export default function Settings() {
                                         </Button>
                                     }
                                 />
+                            </div>
+                        </CardContent>
+                    </Card>
+                </TabsContent>
+
+                {/* ---------------- APPEARANCE ---------------- */}
+                <TabsContent value="appearance">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>{t("appearance.title")}</CardTitle>
+                            <CardDescription>{t("appearance.description")}</CardDescription>
+                        </CardHeader>
+
+                        <CardContent className="space-y-8">
+                            {/* Light / Dark / System */}
+                            <div className="flex items-center justify-between gap-4">
+                                <div>
+                                    <Label>{t("appearance.theme.label")}</Label>
+                                    <p className="pt-1 text-sm text-muted-foreground">{t("appearance.theme.info")}</p>
+                                </div>
+
+                                <div className="flex shrink-0 rounded-lg border p-1 gap-1">
+                                    <button
+                                        type="button"
+                                        onClick={() => setTheme("light")}
+                                        className={cn(
+                                            "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-all",
+                                            theme === "light" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                                        )}
+                                    >
+                                        <Sun className="size-4" />
+                                        <span className="hidden sm:inline">{t("appearance.theme.light")}</span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setTheme("dark")}
+                                        className={cn(
+                                            "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-all",
+                                            theme === "dark" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                                        )}
+                                    >
+                                        <Moon className="size-4" />
+                                        <span className="hidden sm:inline">{t("appearance.theme.dark")}</span>
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setTheme("system")}
+                                        className={cn(
+                                            "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-all",
+                                            theme === "system" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                                        )}
+                                    >
+                                        <Monitor className="size-4" />
+                                        <span className="hidden sm:inline">{t("appearance.theme.system")}</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Color theme swatches */}
+                            <div>
+                                <Label>{t("appearance.colorTheme.label")}</Label>
+                                <p className="pt-1 text-sm text-muted-foreground">{t("appearance.colorTheme.info")}</p>
+
+                                <div className="mt-4 flex flex-wrap gap-4">
+                                    {colorThemes.map((ct) => (
+                                        <button
+                                            type="button"
+                                            key={ct.id}
+                                            onClick={() => setColorTheme(ct.id)}
+                                            className="group flex flex-col items-center gap-2"
+                                            title={ct.label}
+                                        >
+                                            <div
+                                                className={cn(
+                                                    `swatch-${ct.id}`,
+                                                    "size-9 rounded-full ring-offset-2 ring-offset-background transition-all",
+                                                    colorTheme === ct.id ? "ring-2 ring-foreground scale-110" : "hover:ring-2 hover:ring-foreground/40 hover:scale-105",
+                                                )}
+                                            />
+                                            <span className={cn("text-xs transition-colors", colorTheme === ct.id ? "text-foreground font-medium" : "text-muted-foreground")}>
+                                                {ct.label}
+                                            </span>
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </CardContent>
                     </Card>

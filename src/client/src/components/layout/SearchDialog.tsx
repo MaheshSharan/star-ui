@@ -5,12 +5,13 @@ import { useTmdb } from "@/hooks/use-tmdb"
 import { useDebouncedValue } from "@/hooks/use-debounce"
 import type { MultiSearchResultItem } from "@lorenzopant/tmdb"
 import { useSearchParams } from "react-router-dom"
-import { LucideClapperboard, LucideFilter, LucidePlay, LucideTv, Star } from "lucide-react"
+import { LucideClapperboard, LucideFilter, LucidePlay, LucideTv } from "lucide-react"
 import { useTranslation } from "react-i18next"
 import { useAppSettings } from "@/hooks/use-appsettings.ts"
 import { InputGroup, InputGroupAddon, InputGroupInput } from "@/components/ui/input-group.tsx"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu.tsx"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer.ts"
+import { StarRating } from "@/components/media/StarRating"
 
 type MediaFilter = "all" | "movie" | "tv"
 
@@ -171,12 +172,7 @@ export function SearchDialog() {
                     <span className="truncate text-sm font-medium">{title}</span>
 
                     <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                        {rating !== null && (
-                            <span className="flex items-center gap-1">
-                                <Star width={4} height={4} className="h-4" />
-                                {rating.toFixed(1)}
-                            </span>
-                        )}
+                        {rating !== null && <StarRating rating={rating} />}
 
                         <span>{subtitle}</span>
                     </div>

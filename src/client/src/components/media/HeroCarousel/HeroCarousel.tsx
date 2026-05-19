@@ -1,11 +1,12 @@
 import { useMemo, useState } from "react"
 import type { TMDB } from "@lorenzopant/tmdb"
-import { ArrowRight, PlayCircle, Star } from "lucide-react"
+import { ArrowRight, PlayCircle } from "lucide-react"
 import { Carousel, type CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel"
 import { useHeroSlides } from "./use-heroslides"
 import type { HeroFetcherResult } from "./types"
 import { useHeroAutoplay } from "./use-hero-autoplay"
 import { Button } from "@/components/ui/button.tsx"
+import { StarRating } from "@/components/media/StarRating"
 import "@/styles/animation.css"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer"
 import { useIsMobile } from "@/hooks/use-mobile.ts"
@@ -56,16 +57,13 @@ export function HeroCarousel({ tmdb, fetcher }: { tmdb: TMDB; fetcher: HeroFetch
                                 <div className="mx-auto w-full max-w-7xl px-6 pb-18 sm:px-8 lg:px-12 lg:pb-23">
                                     <div className="max-w-2xl space-y-5">
                                         <img className="max-h-34 max-w-[50vw] sm:max-w-140" src={slide.logo} alt={slide.title} />
-                                        <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground sm:text-base">
-                                            <span className="inline-flex items-center gap-1.5 font-semibold text-primary">
-                                                <Star className="size-3.5" />
-                                                {slide.rating}
-                                            </span>
+                                        <div className="flex flex-wrap items-center gap-4 text-sm text-white/70 sm:text-base">
+                                            <StarRating rating={slide.rating} className="font-semibold" />
                                             <span>{new Date(slide.year).toLocaleDateString()}</span>
                                             <span>{slide.runtime}</span>
                                         </div>
 
-                                        <p className="max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+                                        <p className="max-w-xl text-sm leading-relaxed text-white/70 sm:text-base">
                                             {slide.description.length > (isMobile ? 100 : 235)
                                                 ? `${slide.description
                                                       .slice(0, isMobile ? 100 : 235)
@@ -85,16 +83,14 @@ export function HeroCarousel({ tmdb, fetcher }: { tmdb: TMDB; fetcher: HeroFetch
                                                     }
                                                 }}
                                             >
-                                                <PlayCircle className="size-4" />
                                                 Play
                                             </Button>
 
                                             <Button
                                                 variant="outline"
-                                                className="rounded-full border-border bg-background/30 px-7 text-foreground backdrop-blur-md"
+                                                className="rounded-full border-white/30 bg-white/10 px-7 text-white backdrop-blur-md hover:bg-white/20 hover:text-white"
                                                 onClick={() => open({ type: slide.type, id: slide.id })}
                                             >
-                                                <ArrowRight className="size-4" />
                                                 Learn more
                                             </Button>
                                         </div>

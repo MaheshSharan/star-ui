@@ -1,4 +1,4 @@
-import { Calendar, Play, Star } from "lucide-react"
+import { Calendar, Play } from "lucide-react"
 import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -10,6 +10,7 @@ import { TrailerDialog } from "./TrailerDialog"
 import type { MediaDrawerPayload } from "./types/drawer.types"
 import { formatRuntime } from "@/components/media/drawer/mappers/media.mapper.ts"
 import { cn } from "@/lib/utils.ts"
+import { StarRating } from "@/components/media/StarRating"
 import { useNavigate } from "react-router-dom"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer.ts"
 
@@ -66,7 +67,7 @@ export function MediaDrawer({ payload, isOpen, onClose, className }: MediaDrawer
                         </div>
 
                         {/* CONTENT */}
-                        <div className="relative z-20 -mt-[45vh] px-4 pb-10 md:px-8">
+                        <div className="relative z-20 -mt-[45vh] px-4 pb-10 md:px-8 text-white">
                             {/* LOGO / TITLE */}
                             <div className="mb-4 max-w-[70%] md:max-w-[40%]">
                                 {data.logoUrl ? (
@@ -79,8 +80,7 @@ export function MediaDrawer({ payload, isOpen, onClose, className }: MediaDrawer
                             {/* META */}
                             <div className="mb-4 flex flex-wrap items-center gap-2">
                                 <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/30 px-3 py-1 backdrop-blur-xl">
-                                    <Star className="h-3.5 w-3.5 fill-yellow-500 text-yellow-500" />
-                                    <span className="text-sm font-semibold text-white">{data.rating.toFixed(1)}/10</span>
+                                    <StarRating rating={data.rating} className="text-sm font-semibold text-white" />
                                 </div>
 
                                 <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/30 px-3 py-1 backdrop-blur-xl">
@@ -112,7 +112,7 @@ export function MediaDrawer({ payload, isOpen, onClose, className }: MediaDrawer
                             </div>
 
                             {/* OVERVIEW */}
-                            <div className="mb-6 max-w-2xl text-left text-sm text-muted-foreground">{data.overview}</div>
+                            <div className="mb-6 max-w-2xl text-left text-sm text-white/60">{data.overview}</div>
 
                             {/* TV EPISODES */}
                             {data.type === "tv" && data.seasons && (

@@ -21,6 +21,7 @@ import { useHistory } from "@/hooks/use-history"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button.tsx"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer.ts"
+import { cn } from "@/lib/utils"
 
 export default function SideBar() {
     const { setOpen, setOpenMobile } = useSidebar()
@@ -33,8 +34,10 @@ export default function SideBar() {
     const isActive = (path: string) => location.pathname === path
 
     const navItemClass = (active: boolean) =>
-        `group relative flex items-center gap-3 w-full rounded-lg px-3 py-2 text-sm font-medium align-text-left justify-start transition-all
-        ${active ? "bg-primary text-primary-foreground shadow-md" : "hover:bg-muted/60 text-muted-foreground hover:text-foreground"}`
+        cn(
+            "group relative flex items-center gap-3 w-full rounded-lg px-3 py-2 text-sm font-medium align-text-left justify-start transition-all",
+            active ? "bg-primary text-primary-foreground shadow-md" : "hover:bg-muted/60 text-muted-foreground hover:text-foreground",
+        )
 
     const clickHandler = (path: string) => {
         setOpen(false)

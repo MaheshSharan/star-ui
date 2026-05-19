@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card.tsx"
 import { cn } from "@/lib/utils.ts"
-import { Star } from "lucide-react"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer"
+import { StarRating } from "@/components/media/StarRating"
 
 export interface MediaCardProps {
     title: string
@@ -36,13 +36,11 @@ export const MediaCard = React.forwardRef<HTMLDivElement, MediaCardProps>(({ tit
                         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
 
                         {/* Text content */}
-                        <div className="relative z-10 w-full p-3">
+                        <div className="relative z-10 w-full p-3 text-white">
                             <div className="text-sm leading-tight font-semibold">{title}</div>
 
                             <div className={"mt-1 flex w-full justify-between text-xs font-medium"}>
-                                <span className={"flex items-center gap-2"}>
-                                    <Star height={15} width={15} /> {rating.toFixed(1)}
-                                </span>
+                                <StarRating rating={rating} />
                                 <span>{year}</span>
                             </div>
                         </div>

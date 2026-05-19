@@ -9,8 +9,8 @@ export default function Footer() {
     const { t } = useTranslation(["footer", "common"])
 
     return (
-        <footer id="footer" className="z-1 mt-8 border-t border-border bg-background py-4 transition-all duration-300 ease-in-out md:py-12">
-            <div className="px-4 md:px-6">
+        <footer id="footer" className="z-1 mt-8 border-t border-border bg-background py-4 md:py-12">
+            <div className="mx-auto w-[min(92vw,1240px)]">
                 <div className="mb-6 grid grid-cols-2 gap-6 md:mb-8 md:grid-cols-3 md:gap-8">
                     {/* Brand */}
                     <div className="col-span-2 md:col-span-1">
