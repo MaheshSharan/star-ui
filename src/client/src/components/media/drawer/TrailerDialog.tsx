@@ -14,9 +14,9 @@ export const TrailerDialog: React.FC<TrailerDialogProps> = ({ trailerId, title }
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant={"secondary"} className={"rounded-full"}>
-                    <Film className="h-4 w-4 text-white" aria-hidden />
-                    <span className="ml-2 text-sm font-medium text-white">Trailer</span>
+                <Button variant={"outline"} className={"rounded-full border-white/30 bg-white/10 text-white hover:bg-white/20 hover:text-white"}>
+                    <Film className="h-4 w-4" aria-hidden />
+                    <span className="ml-2 text-sm font-medium">Trailer</span>
                 </Button>
             </DialogTrigger>
             <DialogContent className="min-w-xl gap-0 overflow-hidden border-none p-0">

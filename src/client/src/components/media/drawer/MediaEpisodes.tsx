@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer.ts"
 import { useNavigate } from "react-router-dom"
@@ -146,12 +146,14 @@ export const MediaEpisodes: React.FC<MediaEpisodesProps> = ({ tvId, seasons }) =
                             </CarouselItem>
                         ))}
                     </CarouselContent>
+                    <CarouselPrevious className="hidden md:flex" />
+                    <CarouselNext className="hidden md:flex" />
                 </Carousel>
             ) : (
                 <div className="h-100 overflow-x-scroll pr-4">
                     <div className="space-y-4">
                         {orderedEpisodes.map((episode) => (
-                            <div key={episode.id} className="flex gap-4 border-b border-border pb-4 last:border-0">
+                            <div key={episode.id} className="flex gap-4 border-b border-border pb-4 last:border-0" onClick={() => handleEpisodeSelect(episode)}>
                                 <div className="relative h-20 w-32 shrink-0 overflow-hidden rounded bg-muted">
                                     {episode.stillUrl ? (
                                         <img src={episode.stillUrl} alt={episode.name} className="h-full w-full object-cover" />

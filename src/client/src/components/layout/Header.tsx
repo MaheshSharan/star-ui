@@ -24,7 +24,7 @@ export default function Header() {
                                 <img src="/favicon.svg" alt="CinePro logo" className="size-full object-cover" />
                             </span>
 
-                            <span className="text-2xl font-semibold tracking-tight text-primary-foreground">{t("common:projectName")}</span>
+                            <span className="text-2xl font-semibold tracking-tight text-primary">{t("common:projectName")}</span>
                         </Link>
                         {!isMobile && <SidebarTrigger />}
                     </div>

@@ -1,8 +1,8 @@
 import React from "react"
-import { Star } from "lucide-react"
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
 import { useMediaDrawer } from "./hooks/useMediaDrawer"
 import type { MediaRecommendation } from "./types/media.types"
+import { StarRating } from "@/components/media/StarRating"
 
 interface MediaRecommendationsProps {
     recommendations: MediaRecommendation[]
@@ -32,16 +32,17 @@ export const MediaRecommendations: React.FC<MediaRecommendationsProps> = ({ reco
                                     ) : (
                                         <div className="flex h-full w-full items-center justify-center bg-muted text-xs text-muted-foreground">No Image</div>
                                     )}
-                                    <div className="absolute right-2 bottom-2 flex items-center gap-1 rounded bg-black/60 px-1.5 py-0.5 text-xs text-white backdrop-blur-sm">
-                                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
-                                        {item.rating.toFixed(1)}
+                                    <div className="absolute right-2 bottom-2 rounded bg-black/60 px-1.5 py-0.5 text-xs text-white backdrop-blur-sm">
+                                        <StarRating rating={item.rating} />
                                     </div>
                                 </div>
-                                <p className="line-clamp-1 text-sm font-medium transition-colors group-hover:text-primary">{item.title}</p>
+                                <p className="line-clamp-1 text-sm font-medium text-white transition-colors group-hover:text-primary">{item.title}</p>
                             </div>
                         </CarouselItem>
                     ))}
                 </CarouselContent>
+                <CarouselPrevious className="hidden md:flex" />
+                <CarouselNext className="hidden md:flex" />
             </Carousel>
         </section>
     )

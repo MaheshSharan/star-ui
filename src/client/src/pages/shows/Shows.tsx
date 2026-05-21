@@ -1,5 +1,6 @@
 import { useTmdb } from "@/hooks/use-tmdb"
 import { HeroCarousel } from "@/components/media/HeroCarousel/HeroCarousel"
+import { HeroFade } from "@/components/media/HeroCarousel/HeroFade"
 import { TvRail } from "@/components/media/MediaRail/TypedRails.tsx"
 import { useEffect, useState } from "react"
 import type { Genre, TrendingParams } from "@lorenzopant/tmdb"
@@ -38,9 +39,7 @@ export default function Shows() {
         <div className="min-h-screen overflow-hidden">
             <HeroCarousel tmdb={tmdb} fetcher={() => Promise.all([tmdb.tv_lists.popular()])} />
 
-            <div className="pointer-events-none relative -mt-12 h-13">
-                <div className="absolute inset-0 bg-linear-to-b from-transparent via-background/70 to-background py-4" />
-            </div>
+            <HeroFade />
 
             <section className="flex flex-col gap-8 bg-background p-8">
                 <TvRail
