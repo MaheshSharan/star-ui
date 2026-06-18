@@ -34,7 +34,7 @@ function DrawerOverlay({ className, ...props }: React.ComponentProps<typeof Draw
     )
 }
 
-function DrawerContent({ className, children, ...props }: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+function DrawerContent({ className, children, headerActions, ...props }: React.ComponentProps<typeof DrawerPrimitive.Content> & { headerActions?: React.ReactNode }) {
     return (
         <DrawerPortal data-slot="drawer-portal">
             <DrawerOverlay />
@@ -46,7 +46,8 @@ function DrawerContent({ className, children, ...props }: React.ComponentProps<t
                 )}
                 {...props}
             >
-                <div className="absolute top-3 right-3 z-50">
+                <div className="absolute top-3 right-3 z-50 flex items-center gap-2">
+                    {headerActions}
                     <DrawerClose asChild>
                         <Button variant="outline" size="icon">
                             <span className="sr-only">Close</span>

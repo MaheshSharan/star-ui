@@ -1,4 +1,4 @@
-import { Calendar, Play } from "lucide-react"
+import { ArrowLeft, Calendar, Play } from "lucide-react"
 import { Drawer, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle } from "@/components/ui/drawer"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -18,15 +18,16 @@ interface MediaDrawerProps {
     payload: MediaDrawerPayload
     depth: number
     isOpen: boolean
-    onClose: () => void
     className?: string
 }
 
-export function MediaDrawer({ payload, isOpen, onClose, className }: MediaDrawerProps) {
+export function MediaDrawer({ payload, depth, isOpen, className }: MediaDrawerProps) {
     const { data, isLoading } = useMediaDetails(payload.type, payload.id)
-    const { closeAll } = useMediaDrawer()
+    const { closeAll, close, stack } = useMediaDrawer()
 
     const navigate = useNavigate()
+
+    const canGoBack = depth === 0 && stack.length > 1
 
     const handlePlay = () => {
         if (!data) return
@@ -41,8 +42,19 @@ export function MediaDrawer({ payload, isOpen, onClose, className }: MediaDrawer
     }
 
     return (
-        <Drawer open={isOpen} onOpenChange={(open) => !open && onClose()}>
-            <DrawerContent className={cn("lenis-stopped lenis-disabled mx-auto mt-0 h-[98vh] max-w-6xl bg-black pt-0 outline-none", className)} data-lenis-prevent="true">
+        <Drawer open={isOpen} onOpenChange={(open) => !open && closeAll()}>
+            <DrawerContent
+                className={cn("lenis-stopped lenis-disabled mx-auto mt-0 h-[98vh] max-w-6xl bg-black pt-0 outline-none", className)}
+                data-lenis-prevent="true"
+                headerActions={
+                    canGoBack && (
+                        <Button variant="outline" size="icon" onClick={close}>
+                            <span className="sr-only">Back</span>
+                            <ArrowLeft className="h-4 w-4" />
+                        </Button>
+                    )
+                }
+            >
                 <DrawerHeader className="sr-only">
                     <DrawerTitle>Media Drawer</DrawerTitle>
                     <DrawerDescription>Content below</DrawerDescription>
@@ -62,49 +74,54 @@ export function MediaDrawer({ payload, isOpen, onClose, className }: MediaDrawer
                                 <div className="flex h-full items-center justify-center bg-muted text-sm text-muted-foreground">No backdrop available</div>
                             )}
 
-                            {/* OVERLAY */}
-                            <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-transparent" />
+                            {/* MULTI-LAYER OVERLAY */}
+                            <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(0,0,0,0.85)_0%,rgba(0,0,0,0.45)_35%,rgba(0,0,0,0.75)_100%)]" />
+                            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_80%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_100%)]" />
                         </div>
 
                         {/* CONTENT */}
                         <div className="relative z-20 -mt-[45vh] px-4 pb-10 text-white md:px-8">
                             {/* LOGO / TITLE */}
-                            <div className="mb-4 max-w-[70%] md:max-w-[40%]">
+                            <div className="mb-6 max-w-[70%] animate-in duration-700 fade-in md:max-w-[40%]">
                                 {data.logoUrl ? (
-                                    <img src={data.logoUrl} alt={data.title} draggable={false} className="h-auto w-full object-contain" />
+                                    <img src={data.logoUrl} alt={data.title} draggable={false} className="h-auto w-full object-contain drop-shadow-2xl" />
                                 ) : (
-                                    <h1 className="text-2xl font-black tracking-tight text-white md:text-4xl lg:text-6xl">{data.title}</h1>
+                                    <h1 className="text-2xl font-black tracking-tight text-white drop-shadow-2xl md:text-4xl lg:text-6xl">{data.title}</h1>
                                 )}
                             </div>
 
                             {/* META */}
-                            <div className="mb-4 flex flex-wrap items-center gap-2">
-                                <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/30 px-3 py-1 backdrop-blur-xl">
+                            <div className="mb-5 flex animate-in flex-wrap items-center gap-3 delay-100 duration-700 fade-in">
+                                <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15">
                                     <StarRating rating={data.rating} className="text-sm font-semibold text-white" />
                                 </div>
 
-                                <div className="flex items-center gap-1 rounded-full border border-white/10 bg-black/30 px-3 py-1 backdrop-blur-xl">
-                                    <Calendar className="h-3.5 w-3.5 text-white" />
-                                    <span className="text-sm text-white">{new Date(data.releaseDate).getFullYear()}</span>
+                                <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15">
+                                    <Calendar className="h-4 w-4 text-white" />
+                                    <span className="text-sm font-medium text-white">{new Date(data.releaseDate).getFullYear()}</span>
                                 </div>
 
                                 {data.runtime && (
-                                    <div className="rounded-full border border-white/10 bg-black/30 px-3 py-1 backdrop-blur-xl">
-                                        <span className="text-sm text-white">{formatRuntime(data.runtime)}</span>
+                                    <div className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15">
+                                        <span className="text-sm font-medium text-white">{formatRuntime(data.runtime)}</span>
                                     </div>
                                 )}
 
-                                {data.genres.map((genre) => (
-                                    <Badge key={genre} variant="outline" className="rounded-full px-3 py-3 text-primary italic backdrop-blur-xl">
+                                {data.genres.slice(0, 3).map((genre) => (
+                                    <Badge
+                                        key={genre}
+                                        variant="outline"
+                                        className="rounded-full border-white/20 bg-white/10 px-3 py-1.5 font-medium text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15"
+                                    >
                                         {genre}
                                     </Badge>
                                 ))}
                             </div>
 
                             {/* ACTIONS */}
-                            <div className="mb-5 flex items-center gap-2">
-                                <Button className="rounded-full" onClick={handlePlay}>
-                                    <Play className="mr-2 h-4 w-4 fill-white" />
+                            <div className="mb-6 flex animate-in flex-wrap items-center gap-3 delay-200 duration-700 fade-in">
+                                <Button className="rounded-full px-8 font-semibold shadow-lg transition-all hover:scale-105 hover:shadow-xl" onClick={handlePlay}>
+                                    <Play className="mr-2 h-5 w-5 fill-white" />
                                     Play
                                 </Button>
 
@@ -112,7 +129,7 @@ export function MediaDrawer({ payload, isOpen, onClose, className }: MediaDrawer
                             </div>
 
                             {/* OVERVIEW */}
-                            <div className="mb-6 max-w-2xl text-left text-sm text-white/60">{data.overview}</div>
+                            <div className="mb-8 max-w-2xl animate-in text-left text-sm leading-relaxed text-white/80 delay-300 duration-700 fade-in">{data.overview}</div>
 
                             {/* TV EPISODES */}
                             {data.type === "tv" && data.seasons && (
