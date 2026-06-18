@@ -3,7 +3,7 @@ import { ColorThemeContext, type ColorThemeId } from "@/hooks/use-color-theme"
 import { usePersistentState } from "@/hooks/use-localstorage"
 
 function applyColorTheme(theme: ColorThemeId) {
-    if (theme === "orange") {
+    if (theme === "red") {
         document.documentElement.removeAttribute("data-color-theme")
     } else {
         document.documentElement.setAttribute("data-color-theme", theme)
@@ -11,7 +11,7 @@ function applyColorTheme(theme: ColorThemeId) {
 }
 
 export function ColorThemeProvider({ children }: { children: React.ReactNode }) {
-    const [colorTheme, setColorTheme] = usePersistentState<ColorThemeId>("app.colorTheme", "orange")
+    const [colorTheme, setColorTheme] = usePersistentState<ColorThemeId>("app.colorTheme", "red")
 
     useEffect(() => {
         applyColorTheme(colorTheme)

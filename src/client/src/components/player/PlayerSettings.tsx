@@ -1,14 +1,6 @@
 import { useMemo } from "react"
 import { useTranslation } from "react-i18next"
-import {
-    Check,
-    Settings,
-    Captions,
-    Volume2,
-    HardDrive,
-    Gauge,
-    Clapperboard
-} from "lucide-react"
+import { Check, Settings, Captions, Volume2, HardDrive, Gauge, Clapperboard } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -35,14 +27,7 @@ interface PlayerSettingsProps {
     onQualityChange: (level: number) => void
 }
 
-export function PlayerSettings({
-                                   ref,
-                                   playbackRate,
-                                   onPlaybackRateChange,
-                                   qualities,
-                                   currentQuality,
-                                   onQualityChange
-                               }: PlayerSettingsProps) {
+export function PlayerSettings({ ref, playbackRate, onPlaybackRateChange, qualities, currentQuality, onQualityChange }: PlayerSettingsProps) {
     const { t } = useTranslation("player")
     const { state, selectSource } = useMediaWatchContext()
     const { subtitles, selectedSubtitle, selectSubtitle } = useSubtitles()
@@ -72,29 +57,29 @@ export function PlayerSettings({
                     <Settings className="h-5 w-5" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent ref={ref} align="end" className="backdrop-blur-md bg-black/50 w-full">
+            <PopoverContent ref={ref} align="end" className="w-full bg-black/50 backdrop-blur-md">
                 <Tabs defaultValue="source" className="w-full">
                     <TabsList className="w-full justify-start p-0">
                         <TabsTrigger value="source">
-                            <HardDrive className="mr-2 " />
+                            <HardDrive className="mr-2" />
                             {t("settings.tabs.source")}
                         </TabsTrigger>
                         <TabsTrigger value="subtitles">
-                            <Captions className="mr-2 " />
+                            <Captions className="mr-2" />
                             {t("settings.tabs.subtitles")}
                         </TabsTrigger>
                         <TabsTrigger value="audio">
-                            <Volume2 className="mr-2 " />
+                            <Volume2 className="mr-2" />
                             {t("settings.tabs.audio")}
                         </TabsTrigger>
 
                         <TabsTrigger value="quality">
-                            <Clapperboard className="mr-2 " />
+                            <Clapperboard className="mr-2" />
                             Quality
                         </TabsTrigger>
 
                         <TabsTrigger value="speed">
-                            <Gauge className="mr-2 " />
+                            <Gauge className="mr-2" />
                             Speed
                         </TabsTrigger>
                     </TabsList>
@@ -192,9 +177,7 @@ export function PlayerSettings({
                         <TabsContent value="quality" className="m-0 p-2">
                             <button
                                 onClick={() => onQualityChange(-1)}
-                                className={`flex w-full items-center justify-between rounded-md px-2 py-2 transition-colors ${
-                                    currentQuality === -1 ? "bg-primary/20 text-primary" : ""
-                                }`}
+                                className={`flex w-full items-center justify-between rounded-md px-2 py-2 transition-colors ${currentQuality === -1 ? "bg-primary/20 text-primary" : ""}`}
                             >
                                 <span className="text-sm font-medium">Auto</span>
 

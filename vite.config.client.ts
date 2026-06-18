@@ -161,67 +161,68 @@ export default defineConfig({
                 prefer_related_applications: false,
             },
 
-            workbox: {
-                globPatterns: ["**/*.{js,css,html,svg,ico,json}"],
+            workbox:
+                process.env.VITE_STANDALONE === "true"
+                    ? {
+                          globPatterns: ["**/*.{js,css,html,svg,ico,json}"],
 
-                navigateFallback: "/index.html",
+                          navigateFallback: "/",
 
-                cleanupOutdatedCaches: true,
+                          cleanupOutdatedCaches: true,
 
-                clientsClaim: true,
+                          clientsClaim: true,
 
-                skipWaiting: true,
+                          skipWaiting: true,
 
-                runtimeCaching: [
-                    {
-                        urlPattern: /^https:\/\/image\.tmdb\.org\/.*/i,
+                          runtimeCaching: [
+                              {
+                                  urlPattern: /^https:\/\/image\.tmdb\.org\/.*/i,
 
-                        handler: "StaleWhileRevalidate",
+                                  handler: "StaleWhileRevalidate",
 
-                        options: {
-                            cacheName: "tmdb-images",
+                                  options: {
+                                      cacheName: "tmdb-images",
 
-                            cacheableResponse: {
-                                statuses: [0, 200],
-                            },
+                                      cacheableResponse: {
+                                          statuses: [0, 200],
+                                      },
 
-                            expiration: {
-                                maxEntries: 500,
-                                maxAgeSeconds: 60 * 60 * 24 * 30,
-                            },
+                                      expiration: {
+                                          maxEntries: 500,
+                                          maxAgeSeconds: 60 * 60 * 24 * 30,
+                                      },
 
-                            fetchOptions: {
-                                mode: "no-cors",
-                            },
-                        },
-                    },
-                    {
-                        urlPattern:
-                            /^https:\/\/api\.themoviedb\.org\/.*/i,
+                                      fetchOptions: {
+                                          mode: "no-cors",
+                                      },
+                                  },
+                              },
+                              {
+                                  urlPattern: /^https:\/\/api\.themoviedb\.org\/.*/i,
 
-                        handler: "NetworkFirst",
+                                  handler: "NetworkFirst",
 
-                        options: {
-                            cacheName: "tmdb-api",
+                                  options: {
+                                      cacheName: "tmdb-api",
 
-                            networkTimeoutSeconds: 5,
+                                      networkTimeoutSeconds: 5,
 
-                            expiration: {
-                                maxEntries: 100,
-                                maxAgeSeconds:
-                                    60 * 60 * 24,
-                            },
+                                      expiration: {
+                                          maxEntries: 100,
+                                          maxAgeSeconds: 60 * 60 * 24,
+                                      },
 
-                            cacheableResponse: {
-                                statuses: [0, 200],
-                            },
-                        },
-                    },
-                ],
-            },
+                                      cacheableResponse: {
+                                          statuses: [0, 200],
+                                      },
+                                  },
+                              },
+                          ],
+                      }
+                    : {},
 
             devOptions: {
-                enabled: true,
+                enabled: process.env.NODE_ENV !== "production" ? true : false,
             },
         }),
     ],

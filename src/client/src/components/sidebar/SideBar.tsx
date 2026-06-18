@@ -22,6 +22,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button.tsx"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer.ts"
 import { cn } from "@/lib/utils"
+import Favicon from "../layout/Favicon"
 
 export default function SideBar() {
     const { setOpen, setOpenMobile } = useSidebar()
@@ -35,8 +36,8 @@ export default function SideBar() {
 
     const navItemClass = (active: boolean) =>
         cn(
-            "group relative flex items-center gap-3 w-full rounded-lg px-3 py-2 text-sm font-medium align-text-left justify-start transition-all",
-            active ? "bg-primary text-primary-foreground shadow-md" : "hover:bg-muted/60 text-muted-foreground hover:text-foreground",
+            "group align-text-left relative flex w-full items-center justify-start gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-all",
+            active ? "bg-primary text-primary-foreground shadow-md" : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
         )
 
     const clickHandler = (path: string) => {
@@ -50,7 +51,7 @@ export default function SideBar() {
             {/* Header */}
             <SidebarHeader>
                 <div onClick={() => clickHandler("/")} className="flex cursor-pointer items-center gap-3 px-2 py-2">
-                    <img src="/favicon.svg" alt="Logo" className="h-10" />
+                    <Favicon />
 
                     <h1 className="text-2xl font-bold">{t("projectName")}</h1>
 

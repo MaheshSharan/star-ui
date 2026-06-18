@@ -7,7 +7,7 @@ export function LoadingState({ message }: { message?: string | React.ReactNode }
     const displayMessage = message || t("states.loading")
 
     return (
-        <div className="flex min-h-100 w-full flex-col items-center justify-center h-screen gap-4 rounded-xl bg-background/80 backdrop-blur-sm">
+        <div className="flex h-screen min-h-100 w-full flex-col items-center justify-center gap-4 rounded-xl bg-background/80 backdrop-blur-sm">
             <Spinner className="h-12 w-12 text-primary" />
             <div className="animate-pulse text-muted-foreground">{displayMessage}</div>
         </div>

@@ -132,8 +132,9 @@ export default function Settings() {
                                 <div>
                                     <Label>{t("general.language.cardlabel")}</Label>
                                     <span className="flex pt-1 text-muted-foreground">{t("general.language.info", { gitUrl: t("common:opensource.git-url") })}</span>
-                                    <span className="flex font-semibold pt-1 text-muted-foreground">
-                                        Translations for languages other than English were generated with AI assistance and may contain inaccuracies. If you want to contribute a better translation for your language, please visit the url above.
+                                    <span className="flex pt-1 font-semibold text-muted-foreground">
+                                        Translations for languages other than English were generated with AI assistance and may contain inaccuracies. If you want to contribute a better translation for
+                                        your language, please visit the url above.
                                     </span>
                                 </div>
 
@@ -197,13 +198,13 @@ export default function Settings() {
                                     <p className="pt-1 text-sm text-muted-foreground">{t("appearance.theme.info")}</p>
                                 </div>
 
-                                <div className="flex shrink-0 rounded-lg border p-1 gap-1">
+                                <div className="flex shrink-0 gap-1 rounded-lg border p-1">
                                     <button
                                         type="button"
                                         onClick={() => setTheme("light")}
                                         className={cn(
                                             "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-all",
-                                            theme === "light" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                                            theme === "light" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
                                         )}
                                     >
                                         <Sun className="size-4" />
@@ -214,7 +215,7 @@ export default function Settings() {
                                         onClick={() => setTheme("dark")}
                                         className={cn(
                                             "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-all",
-                                            theme === "dark" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                                            theme === "dark" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
                                         )}
                                     >
                                         <Moon className="size-4" />
@@ -225,7 +226,7 @@ export default function Settings() {
                                         onClick={() => setTheme("system")}
                                         className={cn(
                                             "inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm transition-all",
-                                            theme === "system" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                                            theme === "system" ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground"
                                         )}
                                     >
                                         <Monitor className="size-4" />
@@ -241,23 +242,15 @@ export default function Settings() {
 
                                 <div className="mt-4 flex flex-wrap gap-4">
                                     {colorThemes.map((ct) => (
-                                        <button
-                                            type="button"
-                                            key={ct.id}
-                                            onClick={() => setColorTheme(ct.id)}
-                                            className="group flex flex-col items-center gap-2"
-                                            title={ct.label}
-                                        >
+                                        <button type="button" key={ct.id} onClick={() => setColorTheme(ct.id)} className="group flex flex-col items-center gap-2" title={ct.label}>
                                             <div
                                                 className={cn(
                                                     `swatch-${ct.id}`,
                                                     "size-9 rounded-full ring-offset-2 ring-offset-background transition-all",
-                                                    colorTheme === ct.id ? "ring-2 ring-foreground scale-110" : "hover:ring-2 hover:ring-foreground/40 hover:scale-105",
+                                                    colorTheme === ct.id ? "scale-110 ring-2 ring-foreground" : "hover:scale-105 hover:ring-2 hover:ring-foreground/40"
                                                 )}
                                             />
-                                            <span className={cn("text-xs transition-colors", colorTheme === ct.id ? "text-foreground font-medium" : "text-muted-foreground")}>
-                                                {ct.label}
-                                            </span>
+                                            <span className={cn("text-xs transition-colors", colorTheme === ct.id ? "font-medium text-foreground" : "text-muted-foreground")}>{ct.label}</span>
                                         </button>
                                     ))}
                                 </div>

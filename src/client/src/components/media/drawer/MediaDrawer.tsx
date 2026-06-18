@@ -80,7 +80,7 @@ export function MediaDrawer({ payload, depth, isOpen, className }: MediaDrawerPr
                         </div>
 
                         {/* CONTENT */}
-                        <div className="relative z-20 -mt-[45vh] px-4 pb-10 md:px-8 text-white">
+                        <div className="relative z-20 -mt-[45vh] px-4 pb-10 text-white md:px-8">
                             {/* LOGO / TITLE */}
                             <div className="mb-6 max-w-[70%] animate-in fade-in duration-700 md:max-w-[40%]">
                                 {data.logoUrl ? (

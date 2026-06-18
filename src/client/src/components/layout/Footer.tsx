@@ -4,6 +4,7 @@ import { toast } from "sonner"
 import { Bug, Film, Github, Info, Tv } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTranslation } from "react-i18next"
+import Favicon from "./Favicon"
 
 export default function Footer() {
     const { t } = useTranslation(["footer", "common"])
@@ -15,8 +16,8 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="col-span-2 md:col-span-1">
                         <div className="mb-3 flex items-center gap-2 md:mb-4">
-                            <img src="/favicon.svg" alt="Logo" width={40} height={40} />
-                            <span className="text-lg font-bold text-primary md:text-xl">{t("common:projectName")}</span>
+                            <Favicon width={40} height={40} />
+                            <span className="text-lg font-bold md:text-xl">{t("common:projectName")}</span>
                         </div>
                         <p className="text-xs text-muted-foreground md:text-sm">{t("tagline")}</p>
                     </div>

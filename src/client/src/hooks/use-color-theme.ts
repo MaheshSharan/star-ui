@@ -1,7 +1,6 @@
 import { createContext, useContext } from "react"
 
 export const colorThemes = [
-    { id: "orange", label: "Orange", color: "oklch(0.6172 0.2134 24.6)" },
     { id: "red", label: "Red", color: "oklch(0.62 0.25 15)" },
     { id: "rose", label: "Rose", color: "oklch(0.65 0.22 340)" },
     { id: "purple", label: "Purple", color: "oklch(0.62 0.22 285)" },

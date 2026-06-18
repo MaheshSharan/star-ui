@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import Hls from "hls.js"
 import { useTranslation } from "react-i18next"
 import { usePlayerState } from "./hooks/usePlayerState"
@@ -213,16 +213,17 @@ export function MediaPlayer() {
         }
     }
 
-    if (!selectedSource) return (
-        <LoadingState
-            message={
-                <div className={"flex flex-col items-center justify-center"}>
-                    <span className={"text-lg"}>{t("states.resolving")}</span>
-                    <span>{t("states.resolvingSub")}</span>
-                </div>
-            }
-        />
-    )
+    if (!selectedSource)
+        return (
+            <LoadingState
+                message={
+                    <div className={"flex flex-col items-center justify-center"}>
+                        <span className={"text-lg"}>{t("states.resolving")}</span>
+                        <span>{t("states.resolvingSub")}</span>
+                    </div>
+                }
+            />
+        )
 
     return (
         <div ref={containerRef} className="group relative h-screen w-full overflow-hidden" onMouseMove={handleMouseMove} onMouseLeave={() => setShowControls(false)}>

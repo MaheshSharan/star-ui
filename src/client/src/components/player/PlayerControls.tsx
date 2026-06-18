@@ -1,16 +1,5 @@
 import React, { useEffect, type WheelEventHandler } from "react"
-import {
-    Play,
-    Pause,
-    Maximize,
-    Minimize,
-    Volume2,
-    VolumeX,
-    Undo,
-    Redo,
-    PictureInPicture,
-    PictureInPicture2
-} from "lucide-react"
+import { Play, Pause, Maximize, Minimize, Volume2, VolumeX, Undo, Redo, PictureInPicture, PictureInPicture2 } from "lucide-react"
 import { useTranslation } from "react-i18next"
 
 import { Button } from "@/components/ui/button"

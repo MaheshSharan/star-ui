@@ -5,7 +5,7 @@
         "rootDir": "./src/server",
         "lib": ["ESNext"],
         "target": "ESNext",
-        "module": "ESNext"
+        "module": "NodeNext"
     },
     "include": ["src/server/**/*", "src/types/**/*"],
     "exclude": ["src/client/**/*", "src/**/*.test.ts"]

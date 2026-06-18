@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { H2, H3, H4 } from "@/components/ui/typography.tsx"
 import "@/styles/animation.css"
 import { useTranslation } from "react-i18next"
+import Favicon from "../layout/Favicon"
 
 type StartupPhase = "loading" | "brand" | "closing" | "done"
 const startupOverlayKey = "app.startup-overlay-done"
@@ -68,7 +69,7 @@ export default function StartupOverlay() {
                 <div className="relative z-10 flex w-[min(88vw,420px)] flex-col items-center gap-5">
                     <div className="inline-flex size-48 items-center justify-center transition-all duration-500 sm:size-28">
                         <div className="flex size-full items-center justify-center">
-                            <img src="/favicon.svg" alt={t("projectName") + " Logo"} className="object-contain" />
+                            <Favicon />
                         </div>
                     </div>
 
@@ -84,7 +85,7 @@ export default function StartupOverlay() {
                 <div className="relative z-10 flex flex-col items-center gap-4 transition-all duration-500">
                     <div className={`inline-flex size-48 items-center justify-center transition-all duration-500 sm:size-28 ${phase === "closing" ? "scale-110 opacity-0" : "scale-100 opacity-100"}`}>
                         <div className="flex size-full items-center justify-center">
-                            <img src="/favicon.svg" alt={t("projectName") + " Logo"} className="object-contain" />
+                            <Favicon />
                         </div>
                     </div>
 

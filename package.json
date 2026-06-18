@@ -6,10 +6,10 @@
     "scripts": {
         "dev": "tsx src/server/index.ts --dev",
         "start": "cross-env NODE_ENV=production node build/server/index.js",
-        "build": "npm run build:server && npm run build:client",
-        "build:client": "vite build",
+        "build": "npm run build:client && npm run build:server",
+        "build:client": "dotenv -e .env -- vite build",
         "format": "prettier --write .",
-        "build:server": "tsc",
+        "build:server": "npx rimraf tsconfig.server.tsbuildinfo && dotenv -e .env -- tsc -p tsconfig.server.json",
         "test": "tsx --test"
     },
     "dependencies": {
@@ -20,6 +20,7 @@
         "@fastify/helmet": "^13.0.2",
         "@fastify/rate-limit": "^10.3.0",
         "@fastify/sensible": "^6.0.4",
+        "@fastify/static": "^9.1.3",
         "@fastify/vite": "^8.4.1",
         "@fontsource-variable/geist": "^5.2.8",
         "@fontsource-variable/manrope": "^5.2.8",
@@ -65,6 +66,7 @@
         "@types/react-dom": "^19.2.3",
         "@vitejs/plugin-react": "^5.2.0",
         "cross-env": "^10.1.0",
+        "dotenv-cli": "^11.0.0",
         "eslint": "^9.39.4",
         "eslint-config-prettier": "^10.1.8",
         "eslint-plugin-react-hooks": "^7.0.1",

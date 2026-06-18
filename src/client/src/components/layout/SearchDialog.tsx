@@ -106,7 +106,7 @@ export function SearchDialog() {
                 })
 
                 if (!cancelled) {
-                    setResults(res.results.filter(item => item.media_type !== "person") ?? [])
+                    setResults(res.results.filter((item) => item.media_type !== "person") ?? [])
                 }
             } catch (err) {
                 console.error(err)
@@ -171,7 +171,7 @@ export function SearchDialog() {
                 <div className="flex flex-col overflow-hidden">
                     <span className="truncate text-sm font-medium">{title}</span>
 
-                    <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                    <div className="flex items-center gap-4 text-xs text-muted-foreground ring-0 outline-none focus:ring-0 focus:outline-none">
                         {rating !== null && <StarRating rating={rating} />}
 
                         <span>{subtitle}</span>
