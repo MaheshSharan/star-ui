@@ -82,41 +82,45 @@ export function MediaDrawer({ payload, depth, isOpen, className }: MediaDrawerPr
                         {/* CONTENT */}
                         <div className="relative z-20 -mt-[45vh] px-4 pb-10 text-white md:px-8">
                             {/* LOGO / TITLE */}
-                            <div className="mb-6 max-w-[70%] animate-in fade-in duration-700 md:max-w-[40%]">
+                            <div className="mb-6 max-w-[70%] animate-in duration-700 fade-in md:max-w-[40%]">
                                 {data.logoUrl ? (
                                     <img src={data.logoUrl} alt={data.title} draggable={false} className="h-auto w-full object-contain drop-shadow-2xl" />
                                 ) : (
-                                    <h1 className="text-2xl font-black tracking-tight drop-shadow-2xl text-white md:text-4xl lg:text-6xl">{data.title}</h1>
+                                    <h1 className="text-2xl font-black tracking-tight text-white drop-shadow-2xl md:text-4xl lg:text-6xl">{data.title}</h1>
                                 )}
                             </div>
 
                             {/* META */}
-                            <div className="mb-5 flex flex-wrap items-center gap-3 animate-in fade-in duration-700 delay-100">
-                                <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-white/15 hover:border-white/30">
+                            <div className="mb-5 flex animate-in flex-wrap items-center gap-3 delay-100 duration-700 fade-in">
+                                <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15">
                                     <StarRating rating={data.rating} className="text-sm font-semibold text-white" />
                                 </div>
 
-                                <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-white/15 hover:border-white/30">
+                                <div className="flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15">
                                     <Calendar className="h-4 w-4 text-white" />
                                     <span className="text-sm font-medium text-white">{new Date(data.releaseDate).getFullYear()}</span>
                                 </div>
 
                                 {data.runtime && (
-                                    <div className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:bg-white/15 hover:border-white/30">
+                                    <div className="rounded-full border border-white/20 bg-white/10 px-4 py-1.5 backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15">
                                         <span className="text-sm font-medium text-white">{formatRuntime(data.runtime)}</span>
                                     </div>
                                 )}
 
                                 {data.genres.slice(0, 3).map((genre) => (
-                                    <Badge key={genre} variant="outline" className="rounded-full border-white/20 bg-white/10 px-3 py-1.5 text-white font-medium backdrop-blur-md transition-all hover:bg-white/15 hover:border-white/30">
+                                    <Badge
+                                        key={genre}
+                                        variant="outline"
+                                        className="rounded-full border-white/20 bg-white/10 px-3 py-1.5 font-medium text-white backdrop-blur-md transition-all hover:border-white/30 hover:bg-white/15"
+                                    >
                                         {genre}
                                     </Badge>
                                 ))}
                             </div>
 
                             {/* ACTIONS */}
-                            <div className="mb-6 flex flex-wrap items-center gap-3 animate-in fade-in duration-700 delay-200">
-                                <Button className="rounded-full px-8 font-semibold shadow-lg hover:shadow-xl transition-all hover:scale-105" onClick={handlePlay}>
+                            <div className="mb-6 flex animate-in flex-wrap items-center gap-3 delay-200 duration-700 fade-in">
+                                <Button className="rounded-full px-8 font-semibold shadow-lg transition-all hover:scale-105 hover:shadow-xl" onClick={handlePlay}>
                                     <Play className="mr-2 h-5 w-5 fill-white" />
                                     Play
                                 </Button>
@@ -125,7 +129,7 @@ export function MediaDrawer({ payload, depth, isOpen, className }: MediaDrawerPr
                             </div>
 
                             {/* OVERVIEW */}
-                            <div className="mb-8 max-w-2xl text-left text-sm leading-relaxed text-white/80 animate-in fade-in duration-700 delay-300">{data.overview}</div>
+                            <div className="mb-8 max-w-2xl animate-in text-left text-sm leading-relaxed text-white/80 delay-300 duration-700 fade-in">{data.overview}</div>
 
                             {/* TV EPISODES */}
                             {data.type === "tv" && data.seasons && (

@@ -34,12 +34,7 @@ function DrawerOverlay({ className, ...props }: React.ComponentProps<typeof Draw
     )
 }
 
-function DrawerContent({
-    className,
-    children,
-    headerActions,
-    ...props
-}: React.ComponentProps<typeof DrawerPrimitive.Content> & { headerActions?: React.ReactNode }) {
+function DrawerContent({ className, children, headerActions, ...props }: React.ComponentProps<typeof DrawerPrimitive.Content> & { headerActions?: React.ReactNode }) {
     return (
         <DrawerPortal data-slot="drawer-portal">
             <DrawerOverlay />
