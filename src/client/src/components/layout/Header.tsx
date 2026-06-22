@@ -1,21 +1,17 @@
 import { Button } from "@/components/ui/button"
 import { SearchDialog } from "@/components/layout/SearchDialog.tsx"
-import { LucideGlobeLock, LucideGlobeX, LucideSearch, Settings2 } from "lucide-react"
+import { LucideSearch, Settings2 } from "lucide-react"
 import { Kbd } from "@/components/ui/kbd"
 import { SidebarTrigger } from "@/components/ui/sidebar.tsx"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { useTranslation } from "react-i18next"
 import { useAppSettings } from "@/hooks/use-appsettings.ts"
 import { useIsMobile } from "@/hooks/use-mobile.ts"
-import { useOmss } from "@/hooks/use-omss"
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 import Favicon from "./Favicon"
 
 export default function Header() {
     const { t } = useTranslation(["header", "common", "settings"])
     const { setShowSearch, showSearch } = useAppSettings()
-    const { valid } = useOmss()
-    const navigate = useNavigate()
     const isMobile = useIsMobile()
 
     return (
@@ -62,39 +58,12 @@ export default function Header() {
                         )}
 
                         {!isMobile && (
-                            <>
-                                <Tooltip>
-                                    <TooltipTrigger asChild>
-                                        <Button
-                                            size={"icon-lg"}
-                                            variant={"ghost"}
-                                            className={`hover:text-primary ${valid ? "hover:cursor-default" : ""}`}
-                                            onClick={() => {
-                                                navigate("/settings?tab=omss")
-                                            }}
-                                        >
-                                            {valid ? <LucideGlobeLock /> : <LucideGlobeX />}
-                                        </Button>
-                                    </TooltipTrigger>
-                                    <TooltipContent className="text-center">
-                                        {valid ? (
-                                            "You are connected to your OMSS Server!"
-                                        ) : (
-                                            <>
-                                                You are not connected to any OMSS Server!
-                                                <br />
-                                                Click me to connect to one.
-                                            </>
-                                        )}
-                                    </TooltipContent>
-                                </Tooltip>
-                                <Button asChild variant="outline">
-                                    <Link to="/settings" className="inline-flex items-center gap-1.5">
-                                        <Settings2 className="size-4" />
-                                        {t("settings:title")}
-                                    </Link>
-                                </Button>
-                            </>
+                            <Button asChild variant="outline">
+                                <Link to="/settings" className="inline-flex items-center gap-1.5">
+                                    <Settings2 className="size-4" />
+                                    {t("settings:title")}
+                                </Link>
+                            </Button>
                         )}
                     </div>
                 </div>

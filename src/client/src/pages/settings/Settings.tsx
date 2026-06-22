@@ -11,22 +11,20 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 import { useAppSettings } from "@/hooks/use-appsettings.ts"
 import { supportedLocales, type SupportedLocales } from "@/hooks/use-appsettings"
 import { supportedRegions, useTmdb } from "@/hooks/use-tmdb.ts"
-import { useOmss } from "@/hooks/use-omss.ts"
 import { useHistory } from "@/hooks/use-history.ts"
 
 import type { CountryISO3166_1 } from "@lorenzopant/tmdb"
 
 import { maskKey } from "@/lib/strings.utils.ts"
 
-import { Badge } from "@/components/ui/badge.tsx"
-import { Item, ItemContent, ItemHeader } from "@/components/ui/item.tsx"
-import { H1, H4, P } from "@/components/ui/typography.tsx"
+import { Item, ItemContent } from "@/components/ui/item.tsx"
+import { H1, P } from "@/components/ui/typography.tsx"
 import { Button } from "@/components/ui/button"
 import { Empty, EmptyDescription, EmptyHeader, EmptyMedia, EmptyTitle } from "@/components/ui/empty"
 
 import ConfirmDialog from "@/components/layout/ConfirmDialog.tsx"
 
-import { AlertTriangle, Monitor, Moon, RefreshCcw, Star, Sun, Trash2 } from "lucide-react"
+import { Monitor, Moon, RefreshCcw, Star, Sun, Trash2 } from "lucide-react"
 import { useEffect } from "react"
 import i18n from "i18next"
 import { useTheme } from "@/app/providers/theme-provider"
@@ -40,7 +38,7 @@ export default function Settings() {
 
     const [searchParams, setSearchParams] = useSearchParams()
 
-    const validTabs = ["general", "appearance", "history", "playback", "omss", "tmdb"] as const
+    const validTabs = ["general", "appearance", "history", "playback", "tmdb"] as const
 
     type Tab = (typeof validTabs)[number]
 
@@ -72,7 +70,6 @@ export default function Settings() {
         location.reload()
     }
 
-    const { valid, baseUrl, setBaseUrl } = useOmss()
     const { clear, history, remove } = useHistory()
     const { cache } = useTmdb()
 
@@ -103,7 +100,6 @@ export default function Settings() {
                     <TabsTrigger value="appearance">{t("tabs.appearance")}</TabsTrigger>
                     <TabsTrigger value="history">{t("tabs.history")}</TabsTrigger>
                     <TabsTrigger value="playback">{t("tabs.playback")}</TabsTrigger>
-                    <TabsTrigger value="omss">{t("tabs.omss")}</TabsTrigger>
                     <TabsTrigger value="tmdb">{t("tabs.tmdb")}</TabsTrigger>
                 </TabsList>
 
@@ -339,41 +335,6 @@ export default function Settings() {
                                 </div>
 
                                 <Switch checked={autoplayNext} onCheckedChange={setAutoplayNext} />
-                            </div>
-                        </CardContent>
-                    </Card>
-                </TabsContent>
-
-                {/* ---------------- OMSS ---------------- */}
-                <TabsContent value="omss">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>{t("omss.title", { coreName: t("common:coreName") })}</CardTitle>
-                            <CardDescription>{t("omss.description")}</CardDescription>
-                            <CardAction>{valid ? <Badge>{t("omss.connection.connected")}</Badge> : <Badge variant="destructive">{t("omss.connection.disconnected")}</Badge>}</CardAction>
-                        </CardHeader>
-
-                        <CardContent>
-                            <div className="space-y-2">
-                                <Label htmlFor="omss">{t("omss.label", { coreName: t("common:coreName") })}</Label>
-
-                                <span className="flex pt-1 text-muted-foreground">{t("omss.info")}</span>
-
-                                <Input id="omss" value={baseUrl} onChange={(e) => setBaseUrl(e.target.value)} placeholder="http://localhost:3000" />
-
-                                {!standalone && (
-                                    <Item className="border-dashed border-border">
-                                        <ItemHeader>
-                                            <H4 className="flex items-center gap-2">
-                                                <AlertTriangle />
-                                                {t("omss.note.title")}
-                                            </H4>
-                                        </ItemHeader>
-                                        <ItemContent>
-                                            <P>{t("omss.note.value")}</P>
-                                        </ItemContent>
-                                    </Item>
-                                )}
                             </div>
                         </CardContent>
                     </Card>

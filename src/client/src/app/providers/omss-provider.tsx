@@ -1,43 +1,23 @@
 import React, { createContext, useEffect, useMemo, useState } from "react"
 import { createOmssClient, type OmssClient } from "@omss/sdk"
-import { usePersistentState } from "@/hooks/use-localstorage.ts"
-import { useDebouncedValue } from "@/hooks/use-debounce.ts"
 
 type OmssContextType = {
     client: OmssClient
-    baseUrl: string
-    setBaseUrl: (baseUrl: string) => void
     valid: boolean
 }
 
 const OmssContext = createContext<OmssContextType | null>(null)
 
 export function OmssProvider({ children }: { children: React.ReactNode }) {
-    const [baseUrl, setBaseUrl] = usePersistentState<string>("app.omssUrl", import.meta.env.VITE_OMSS_API_URL ?? "")
+    const baseUrl = import.meta.env.VITE_OMSS_API_URL
 
     const [valid, setValid] = useState(false)
-    const debouncedBaseUrl = useDebouncedValue(baseUrl, 500)
-
-    useEffect(() => {
-        const params = new URLSearchParams(window.location.search)
-        const urlFromQuery = params.get("omssurl")
-
-        if (urlFromQuery) {
-            setBaseUrl(urlFromQuery)
-
-            // remove query param from URL without reload
-            params.delete("omssurl")
-            const newUrl = window.location.pathname + (params.toString() ? `?${params.toString()}` : "") + window.location.hash
-
-            window.history.replaceState({}, "", newUrl)
-        }
-    }, [setBaseUrl])
 
     const client = useMemo(() => {
         return createOmssClient({
-            baseUrl: debouncedBaseUrl,
+            baseUrl,
         })
-    }, [debouncedBaseUrl])
+    }, [baseUrl])
 
     useEffect(() => {
         let cancelled = false
@@ -69,11 +49,9 @@ export function OmssProvider({ children }: { children: React.ReactNode }) {
     const value = useMemo(
         () => ({
             client,
-            baseUrl,
-            setBaseUrl,
             valid,
         }),
-        [client, baseUrl, setBaseUrl, valid]
+        [client, valid]
     )
 
     return <OmssContext.Provider value={value}>{children}</OmssContext.Provider>

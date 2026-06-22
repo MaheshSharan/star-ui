@@ -7,15 +7,13 @@ import env from "@fastify/env"
 
 const schema = {
     type: "object",
-    required: ["VITE_TMDB_API_KEY"],
+    required: ["VITE_TMDB_API_KEY", "PORT", "HOST"],
     properties: {
         PORT: {
             type: "number",
-            default: 5173,
         },
         HOST: {
             type: "string",
-            default: "localhost",
         },
         VITE_TMDB_API_KEY: {
             type: "string",
@@ -25,7 +23,6 @@ const schema = {
         },
         VITE_STANDALONE: {
             type: "boolean",
-            default: true,
         },
         ALLOWED_HOSTS: {
             type: "string",
@@ -33,7 +30,6 @@ const schema = {
         },
         TRUST_PROXY: {
             type: "boolean",
-            default: false,
         },
     },
 }

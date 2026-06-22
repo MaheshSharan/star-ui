@@ -28,8 +28,7 @@ function MediaWatchPageContent({ type }: { type: MediaType }) {
             <div className="relative min-h-screen bg-black text-foreground">
                 <div className="flex min-h-screen w-full items-center justify-center gap-4">
                     <div className="space-y-4 text-center">
-                        <p>Your OMSS server is unreachable. Please set it up correctly.</p>
-                        <Button onClick={() => navigate("/settings?tab=omss")}>Go to Settings</Button>
+                        <p>OMSS server is not reachable. Check your VITE_OMSS_API_URL environment variable.</p>
                     </div>
                 </div>
 
