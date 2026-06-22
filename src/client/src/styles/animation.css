@@ -13,16 +13,3 @@
     will-change: transform;
 }
 
-@keyframes startup-loading-bar {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
-}
-
-.animate-startup-loading-bar {
-    width: 0%;
-    animation: startup-loading-bar 2000ms linear forwards;
-}

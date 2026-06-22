@@ -12,6 +12,8 @@ import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer"
 import { useIsMobile } from "@/hooks/use-mobile.ts"
 import { useNavigate } from "react-router-dom"
 
+import { Spinner } from "@/components/ui/spinner"
+
 export function HeroCarousel({ tmdb, fetcher }: { tmdb: TMDB; fetcher: HeroFetcherResult }) {
     const { open } = useMediaDrawer()
     const { slides, loading } = useHeroSlides(tmdb, fetcher)
@@ -35,7 +37,7 @@ export function HeroCarousel({ tmdb, fetcher }: { tmdb: TMDB; fetcher: HeroFetch
     const heroEmptyState = useMemo(
         () => (
             <div className="flex min-h-screen flex-col items-center justify-center gap-4 px-6 text-center">
-                <h1 className="animate-pulse text-2xl font-semibold">Loading content...</h1>
+                <Spinner className="h-12 w-12 text-primary" />
             </div>
         ),
         []

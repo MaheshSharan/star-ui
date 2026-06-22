@@ -3,7 +3,6 @@ import { useSidebar } from "@/components/ui/sidebar.tsx"
 import SideBar from "@/components/sidebar/SideBar"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
-import StartupOverlay from "@/components/animations/StartupOverlay.tsx"
 import { MediaDrawerRoot } from "@/components/media/drawer/MediaDrawerRoot"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer.ts"
 
@@ -39,8 +38,6 @@ export default function AppLayout() {
 
                 <Footer />
             </div>
-
-            <StartupOverlay />
         </div>
     )
 }
