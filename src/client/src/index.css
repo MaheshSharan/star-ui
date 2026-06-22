@@ -280,3 +280,12 @@
     }
 }
 
+.rank-card-wrapper {
+    --carousel-gap: 8px;
+}
+@media (min-width: 768px) {
+    .rank-card-wrapper {
+        --carousel-gap: 16px;
+    }
+}
+

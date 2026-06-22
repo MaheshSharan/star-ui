@@ -7,12 +7,13 @@ export interface MediaRailProps<T> {
     title?: React.ReactNode | string
     fetcher: () => Promise<{ results: T[] } | T[]>
     getKey: (item: T) => string | number
-    renderItem: (item: T) => React.ReactNode
+    renderItem: (item: T, index: number) => React.ReactNode
     onSelect?: (item: T) => void
     className?: string
     itemClassName?: string
     skeletonCount?: number
     renderSkeleton?: (index: number) => React.ReactNode
+    itemsOverride?: T[]
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -43,8 +44,10 @@ export function useMediaRail<T>(fetcher: () => Promise<{ results: T[] } | T[]>) 
     return { items, isLoading, error, refetch: fetchData }
 }
 
-export function MediaRail<T>({ title, fetcher, getKey, renderItem, className, itemClassName, skeletonCount = 6, renderSkeleton }: MediaRailProps<T>) {
-    const { items, isLoading, error } = useMediaRail(fetcher)
+export function MediaRail<T>({ title, fetcher, getKey, renderItem, className, itemClassName, skeletonCount = 6, renderSkeleton, itemsOverride }: MediaRailProps<T>) {
+    const { items: fetchedItems, isLoading: fetching, error } = useMediaRail(fetcher)
+    const items = itemsOverride ?? fetchedItems
+    const isLoading = itemsOverride ? false : fetching
 
     if (error) {
         return null
@@ -67,16 +70,16 @@ export function MediaRail<T>({ title, fetcher, getKey, renderItem, className, it
                 }}
                 className="w-full"
             >
-                <CarouselContent className="-ml-2 md:-ml-4">
+                <CarouselContent className="-ml-2 md:-ml-4 gap-px">
                     {isLoading
                         ? Array.from({ length: skeletonCount }).map((_, i) => (
                               <CarouselItem key={`skeleton-${i}`} className={cn("basis-1/2 pl-2 sm:basis-1/3 md:basis-1/4 md:pl-4 lg:basis-1/5 xl:basis-1/7", itemClassName)}>
                                   {renderSkeleton ? renderSkeleton(i) : defaultRenderSkeleton(i)}
                               </CarouselItem>
                           ))
-                        : items.map((item) => (
+                        : items.map((item, index) => (
                               <CarouselItem key={getKey(item)} className={cn("basis-1/2 pl-2 sm:basis-1/3 md:basis-1/4 md:pl-4 lg:basis-1/5 xl:basis-1/7", itemClassName)}>
-                                  <div>{renderItem(item)}</div>
+                                  <div>{renderItem(item, index)}</div>
                               </CarouselItem>
                           ))}
                 </CarouselContent>
