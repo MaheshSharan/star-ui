@@ -3,6 +3,7 @@ import { useSidebar } from "@/components/ui/sidebar.tsx"
 import SideBar from "@/components/sidebar/SideBar"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
+import MobileNav from "@/components/layout/MobileNav"
 import { MediaDrawerRoot } from "@/components/media/drawer/MediaDrawerRoot"
 import { useMediaDrawer } from "@/components/media/drawer/hooks/useMediaDrawer.ts"
 
@@ -21,6 +22,7 @@ export default function AppLayout() {
             <div onClick={() => setOpen(false)} className={`fixed inset-0 z-20 transition-all duration-300 ease-out ${open ? "opacity-100 backdrop-blur-sm" : "pointer-events-none opacity-0"}`} />
 
             <Header />
+            <MobileNav />
 
             <div id="app-root" className={`relative flex min-h-screen flex-col transition-all duration-500 ease-out ${isVisible ? "translate-x-3 scale-[0.99] opacity-90" : "opacity-100"}`}>
                 {/* background effects */}
@@ -32,7 +34,7 @@ export default function AppLayout() {
                     </div>
                 </div>
 
-                <main className="relative z-10 mx-auto w-full flex-1 space-y-6">
+                <main className="relative z-10 mx-auto w-full flex-1 space-y-6 pb-20 md:pb-0">
                     <Outlet />
                 </main>
 

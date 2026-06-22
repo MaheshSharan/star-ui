@@ -47,7 +47,7 @@ export default function SideBar() {
     }
 
     return (
-        <Sidebar side="left" variant="floating" collapsible="offcanvas" className={"z-30" + (isVisible ? " hidden" : "")}>
+        <Sidebar side="left" variant="floating" collapsible="offcanvas" className={cn("z-30 hidden md:flex", isVisible && "md:hidden")}>
             {/* Header */}
             <SidebarHeader>
                 <div onClick={() => clickHandler("/")} className="flex cursor-pointer items-center gap-3 px-2 py-2">
