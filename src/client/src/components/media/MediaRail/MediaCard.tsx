@@ -20,7 +20,7 @@ export const MediaCard = React.forwardRef<HTMLDivElement, MediaCardProps>(({ tit
     const { open } = useMediaDrawer()
 
     return (
-        <Card ref={ref} className={cn("group overflow-hidden border-none py-0 transition-all", className)} onClick={() => open({ type: type, id: id })}>
+        <Card ref={ref} className={cn("group overflow-hidden border-none py-0 transition-all cursor-pointer", className)} onClick={() => open({ type: type, id: id })}>
             <CardContent className="p-0">
                 <div className={cn("relative overflow-hidden rounded-md bg-muted", aspectRatio === "portrait" ? "aspect-2/3" : "aspect-video")}>
                     <img
