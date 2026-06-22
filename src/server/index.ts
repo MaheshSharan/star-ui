@@ -14,8 +14,8 @@ async function main() {
             host: app.config.HOST,
         })
 
-        console.log(`CinePro/ui is running at http://${app.config.HOST}:${app.config.PORT}`)
-        console.log(`Check for updates at https://github.com/cinepro-org/ui\n`)
+        console.log(`StarLight/ui is running at http://${app.config.HOST}:${app.config.PORT}`)
+        console.log(`Check for updates at https://github.com/MaheshSharan/star-ui\n`)
         console.log(`Press CTRL+C to stop\n`)
     } catch (err) {
         console.error("Failed to start server:", err instanceof Error ? err.message : String(err))

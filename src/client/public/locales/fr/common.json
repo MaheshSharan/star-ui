@@ -1,7 +1,7 @@
 {
-    "projectName": "CinePro/ui",
-    "authors": "Fondation CinePro",
-    "coreName": "CinePro/Core",
+    "projectName": "StarLight/ui",
+    "authors": "Fondation StarLight",
+    "coreName": "StarLight/Core",
     "notFound": {
         "title": "404 - Mmhh... Perdu vous êtes",
         "description": "Trouvée, cette page ne l'est pas",
@@ -15,7 +15,7 @@
     "loading": "Chargement",
     "welcome": "Bienvenue sur {{projectName}} !",
     "opensource": {
-        "git-url": "https://github.com/cinepro-org/ui",
+        "git-url": "https://github.com/MaheshSharan/star-ui",
         "git-platform": "GitHub"
     },
     "movie": {

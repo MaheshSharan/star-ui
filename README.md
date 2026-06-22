@@ -1,18 +1,18 @@
-# CinePro/ui
+# StarLight/ui
 
 In development at the moment. This is a @fastify/vite setup + shadcn + react.
 
-## Test it out here: [ui.cinepro.cc](https://ui.cinepro.cc/)
+## Test it out here: [github.com/MaheshSharan/star-ui](https://github.com/MaheshSharan/star-ui/)
 
 ## Preview
 
-[![image](/src/client/public/images/home.png)](https://ui.cinepro.cc/)
+[![image](/src/client/public/images/home.png)](https://github.com/MaheshSharan/star-ui/)
 
-[![image](/src/client/public/images/phone.png)](https://ui.cinepro.cc/)
+[![image](/src/client/public/images/phone.png)](https://github.com/MaheshSharan/star-ui/)
 
-[![image](/src/client/public/images/drawer.png)](https://ui.cinepro.cc/)
+[![image](/src/client/public/images/drawer.png)](https://github.com/MaheshSharan/star-ui/)
 
-[![image](/src/client/public/images/player.png)](https://ui.cinepro.cc/)
+[![image](/src/client/public/images/player.png)](https://github.com/MaheshSharan/star-ui/)
 
 ## Notice
 

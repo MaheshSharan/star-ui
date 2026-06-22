@@ -28,11 +28,11 @@ export default defineConfig({
             includeAssets: ["favicon.svg", "robots.txt"],
 
             manifest: {
-                name: "CinePro",
+                name: "StarLight",
 
-                short_name: "CinePro",
+                short_name: "StarLight",
 
-                description: "CinePro is a modern, open-source web app for browsing and streaming movies and TV shows directly in your browser without ads and tracking.",
+                description: "StarLight is a modern, open-source web app for browsing and streaming movies and TV shows directly in your browser without ads and tracking.",
 
                 lang: "en-US",
 
@@ -104,7 +104,7 @@ export default defineConfig({
                     {
                         name: "Home",
                         short_name: "Home",
-                        description: "Welcome to CinePro!",
+                        description: "Welcome to StarLight!",
                         url: "/",
                         icons: [
                             {
@@ -146,7 +146,7 @@ export default defineConfig({
                     {
                         name: "Settings",
                         short_name: "Settings",
-                        description: "Configure CinePro to your liking.",
+                        description: "Configure StarLight to your liking.",
                         url: "/settings",
                         icons: [
                             {

@@ -1,7 +1,7 @@
 {
-    "projectName": "CinePro/ui",
-    "authors": "CinePro 基金会",
-    "coreName": "CinePro/Core",
+    "projectName": "StarLight/ui",
+    "authors": "StarLight 基金会",
+    "coreName": "StarLight/Core",
     "notFound": {
         "title": "404 - 嗯嗯……迷失了",
         "description": "此页面，不存在",
@@ -15,7 +15,7 @@
     "loading": "加载中",
     "welcome": "欢迎来到 {{projectName}}！",
     "opensource": {
-        "git-url": "https://github.com/cinepro-org/ui",
+        "git-url": "https://github.com/MaheshSharan/star-ui",
         "git-platform": "GitHub"
     },
     "movie": {

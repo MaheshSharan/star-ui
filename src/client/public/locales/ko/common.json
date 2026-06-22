@@ -1,7 +1,7 @@
 {
-    "projectName": "CinePro/ui",
-    "authors": "CinePro 재단",
-    "coreName": "CinePro/Core",
+    "projectName": "StarLight/ui",
+    "authors": "StarLight 재단",
+    "coreName": "StarLight/Core",
     "notFound": {
         "title": "404 - 음... 길을 잃으셨군요",
         "description": "이 페이지는 존재하지 않습니다",
@@ -15,7 +15,7 @@
     "loading": "불러오는 중",
     "welcome": "{{projectName}}에 오신 것을 환영합니다!",
     "opensource": {
-        "git-url": "https://github.com/cinepro-org/ui",
+        "git-url": "https://github.com/MaheshSharan/star-ui",
         "git-platform": "GitHub"
     },
     "movie": {
