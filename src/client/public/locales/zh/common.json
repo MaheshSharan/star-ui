@@ -1,5 +1,5 @@
 {
-    "projectName": "CinePro/ui",
+    "projectName": "star-ui",
     "authors": "CinePro 基金会",
     "coreName": "CinePro/Core",
     "notFound": {
@@ -15,7 +15,7 @@
     "loading": "加载中",
     "welcome": "欢迎来到 {{projectName}}！",
     "opensource": {
-        "git-url": "https://github.com/cinepro-org/ui",
+        "git-url": "https://github.com/MaheshSharan/star-ui",
         "git-platform": "GitHub"
     },
     "movie": {

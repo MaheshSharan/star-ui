@@ -1,6 +1,6 @@
 {
-    "projectName": "CinePro/ui",
-    "authors": "Fundación CinePro",
+    "projectName": "star-ui",
+    "authors": "Mahesh Sharan",
     "coreName": "CinePro/Core",
     "notFound": {
         "title": "404 - Mmmhh... Perdido estás",
@@ -15,7 +15,7 @@
     "loading": "Cargando",
     "welcome": "¡Bienvenido a {{projectName}}!",
     "opensource": {
-        "git-url": "https://github.com/cinepro-org/ui",
+        "git-url": "https://github.com/MaheshSharan/star-ui",
         "git-platform": "GitHub"
     },
     "movie": {

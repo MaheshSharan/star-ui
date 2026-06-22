@@ -1,10 +1,12 @@
-# CinePro/ui
+# star-ui
 
 In development at the moment. This is a @fastify/vite setup + shadcn + react.
 
-## Test it out here: [ui.cinepro.cc](https://ui.cinepro.cc/)
+A fork of the deprecated CinePro/ui project, continuing development and maintenance.
 
 ## Preview
+
+*Note: Preview images are from the original CinePro/ui project. Demo links will be updated soon.*
 
 [![image](/src/client/public/images/home.png)](https://ui.cinepro.cc/)
 

@@ -35,7 +35,8 @@ URL for them above, as well as copies of any plain-text lines
 beginning with `Required Notice:` that the licensor provided
 with the software. For example:
 
-> Required Notice: Copyright CinePro Foundation (https://github.com/cinepro-org)
+> Required Notice: Copyright Mahesh Sharan (https://github.com/MaheshSharan/star-ui)
+> Original Project: Copyright CinePro Foundation (https://github.com/cinepro-org)
 
 ## Changes and New Works License
 
